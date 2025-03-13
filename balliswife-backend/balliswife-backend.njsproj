@@ -38,8 +38,14 @@
     <Folder Include="src\" />
     <Folder Include="src\core\" />
     <Folder Include="src\core\entities\" />
+    <Folder Include="src\core\interfaces\" />
+    <Folder Include="src\data\" />
+    <Folder Include="src\usecases\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\data\BallDontLieRepository.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\core\entities\Game.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -47,6 +53,12 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\core\entities\Team.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\interfaces\IRepository.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\usecases\GetGamesByDate.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
