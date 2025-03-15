@@ -5,13 +5,13 @@ export class Game {
         public id: number,
         public date: string,
         public season: number,
-        public status: string,
-        public period: number,
-        public time: string,
+        public status: string, // Status like "Final" or "In Progress"
+        public period: number, // Current quarter or period
+        public time: string, // Time remaining or "Final"
         public postseason: boolean,
         public homeTeamScore: number,
         public visitorTeamScore: number,
-        public homeTeam: Team, // Nested Team entity
-        public visitorTeam: Team // Nested Team entity
+        public homeTeam: Team, // Reference to home team
+        public visitorTeam: Team // Reference to visitor team
     ) { }
 }
