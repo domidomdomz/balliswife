@@ -6,6 +6,7 @@ export class Team {
         public city: string,
         public name: string,
         public fullName: string,
-        public abbreviation: string
+        public abbreviation: string,
+        public logoUrl: string | undefined
     ) { }
 }
