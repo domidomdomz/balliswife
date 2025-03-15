@@ -42,12 +42,16 @@
     <Folder Include="src\core\" />
     <Folder Include="src\core\entities\" />
     <Folder Include="src\core\interfaces\" />
+    <Folder Include="src\core\utils\" />
     <Folder Include="src\data\" />
     <Folder Include="src\infrastructure\" />
     <Folder Include="src\presentation\" />
     <Folder Include="src\usecases\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\core\utils\GameMapper.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\data\BallDontLieRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
