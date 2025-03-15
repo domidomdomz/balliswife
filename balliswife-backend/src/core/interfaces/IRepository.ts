@@ -1,5 +1,6 @@
 export interface IRepository {
-    getGamesByDate(date: string): Promise<any>;
+    getAllGames(params: { startDate?: string; endDate?: string; page?: number }): Promise<any>;
+    //getGamesByDate(date: string): Promise<any>;
     getTeams(): Promise<any>;
     getPlayers(page: number, perPage: number): Promise<any>;
 }
