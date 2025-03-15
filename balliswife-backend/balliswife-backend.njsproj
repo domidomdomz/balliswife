@@ -30,6 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="app.ts" />
+    <Content Include="nodemon.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
@@ -40,6 +43,8 @@
     <Folder Include="src\core\entities\" />
     <Folder Include="src\core\interfaces\" />
     <Folder Include="src\data\" />
+    <Folder Include="src\infrastructure\" />
+    <Folder Include="src\presentation\" />
     <Folder Include="src\usecases\" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +63,19 @@
     <TypeScriptCompile Include="src\core\interfaces\IRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\usecases\GetGamesByDate.ts">
+    <TypeScriptCompile Include="src\infrastructure\Server.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\presentation\GameController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\presentation\LiveScoreController.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\presentation\routes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\usecases\GetAllGames.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>

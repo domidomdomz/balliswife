@@ -1,6 +1,8 @@
 {
-    "target": "ES6",
-    "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "strict": true,
+        "target": "ES6"
+    }
 }
