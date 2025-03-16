@@ -1,0 +1,58 @@
+/* Minimal Date Picker */
+.minimal-date-picker {
+  width: 150px; /* Adjust width as needed */
+  border: none;
+  background-color: transparent;
+  color: #007bff; /* Bootstrap primary color */
+  text-align: center;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Hover effect for the Date Picker */
+.minimal-date-picker:hover {
+  border-bottom: 1px solid #007bff; /* Underline effect */
+  color: #0056b3;
+}
+
+/* Ticker button enhancements */
+.btn-outline-primary {
+  min-width: 50px;
+  font-size: 0.9rem;
+}
+
+/* Active ticker button */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Team Logos */
+.team-card img {
+  max-width: 70px;
+  max-height: 70px;
+  margin-bottom: 10px;
+}
+
+/* Team Names */
+.team-card p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Game Details */
+.game-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.text-success {
+  color: #000000 !important; /* Bright green for winning score */
+}
+
+.text-muted {
+  color: #6c757d !important; /* Neutral gray for losing score */
+}
