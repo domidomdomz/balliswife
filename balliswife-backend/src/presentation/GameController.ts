@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { GetAllGames } from '../usecases/GetAllGames';
 import { BallDontLieRepository } from '../data/BallDontLieRepository';
 import { mapGameData } from '../core/utils/GameMapper';
+import { sortGames } from '../core/utils/GameSorter';
 
 const repository = new BallDontLieRepository();
 const getAllGamesUseCase = new GetAllGames(repository);
@@ -18,7 +19,7 @@ export const getAllGames = async (req: Request, res: Response) => {
         );
 
         // Map raw game data into structured Game entities
-        const games = rawGames.data.map(mapGameData);
+        const games = sortGames(rawGames.data.map(mapGameData));
 
         // Send the mapped games to the client
         res.status(200).json(games);

@@ -52,6 +52,9 @@
     <TypeScriptCompile Include="src\core\utils\GameMapper.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\core\utils\GameSorter.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\data\BallDontLieRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
