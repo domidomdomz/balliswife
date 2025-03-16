@@ -56,3 +56,37 @@
 .text-muted {
   color: #6c757d !important; /* Neutral gray for losing score */
 }
+
+/* Hide the DatePicker textbox */
+.invisible-date-picker {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Style the calendar button */
+.calendar-icon-btn {
+  background-color: #fff;
+  color: #007bff; /* Bootstrap primary color */
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calendar-icon-btn:hover {
+  background-color: #f7f7f7;
+  border-color: #ccc;
+}
+
+/* Use Bootstrap Icon (bi-calendar3) for the calendar icon */
+.bi-calendar3 {
+  font-size: 1.5rem;
+}
