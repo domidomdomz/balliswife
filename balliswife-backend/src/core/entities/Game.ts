@@ -11,6 +11,7 @@ export class Game {
         public postseason: boolean,
         public homeTeamScore: number,
         public visitorTeamScore: number,
+        public dateTime: Date, // Date and time of the game
         public homeTeam: Team, // Reference to home team
         public visitorTeam: Team // Reference to visitor team
     ) { }

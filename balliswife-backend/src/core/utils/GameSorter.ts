@@ -5,6 +5,7 @@ interface Game {
     period: number;
     status: string;
     time: string | null;
+    dateTime: Date;
 }
 
 // Helper to parse remaining time (e.g., "10:23") into numeric seconds
@@ -31,7 +32,19 @@ export const sortGames = (games: Game[]): Game[] => {
     // Sort not started games by their start schedule (ISO datetime in `status`)
     notStartedGames.sort((a, b) => new Date(a.status).getTime() - new Date(b.status).getTime());
 
-    finishedGames.sort((a, b) => a.id - b.id);
+    finishedGames.sort((a, b) => {
+        // Compare by dateTime first
+        const dateComparison = a.dateTime.getTime() - b.dateTime.getTime();
+
+        // If dateTime is equal, compare by id
+        if (dateComparison !== 0) {
+            return dateComparison;
+        }
+
+        // Secondary comparison by id
+        return a.id - b.id;
+    });
+
 
     // Combine sorted categories
     return [...ongoingGames, ...notStartedGames, ...finishedGames];

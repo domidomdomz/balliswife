@@ -37,6 +37,7 @@ export const mapGameData = (gameData: any): Game => {
         gameData.postseason,
         gameData.home_team_score,
         gameData.visitor_team_score,
+        new Date(gameData.datetime),
         homeTeam,
         visitorTeam
     );
