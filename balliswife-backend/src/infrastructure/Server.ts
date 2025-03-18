@@ -7,9 +7,16 @@ dotenv.config();
 
 const app = express();
 
-// Allow requests from specific origins (e.g., React frontend)
+// Allow requests from specific origins (local and deployed React app)
+const allowedOrigins = [
+    'http://localhost:3000', // Local React app
+    'https://balliswife.vercel.app' // Deployed React app on Vercel
+];
+
 app.use(cors({
-    origin: 'http://localhost:3000', // The React app's origin
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true // Optional: if using cookies or other credentials
 }));
 
 const PORT = process.env.PORT || 5000;
