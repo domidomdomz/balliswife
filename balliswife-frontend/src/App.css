@@ -90,3 +90,33 @@
 .bi-calendar3 {
   font-size: 1.5rem;
 }
+
+.day-box {
+  cursor: pointer;
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.day-box:hover {
+  background-color: #e6e6e6;
+}
+
+.day-box.selected {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.day {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 12px;
+  color: #666;
+}

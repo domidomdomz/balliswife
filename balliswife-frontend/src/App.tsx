@@ -4,14 +4,22 @@ import { BallDontLieRepository } from './infrastructure/BallDontLieRepository';
 import { Game } from './core/entities/Game';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
+import { formatInTimeZone, toZonedTime } from 'date-fns-tz'; 
 import DaysTicker from './components/DaysTicker';
 import './App.css'; // Add any custom styles here
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'react-datepicker/dist/react-datepicker.css';
+
+const EST_TIMEZONE = 'America/New_York'; // NBA timezone
 
 const App = () => {
     const [games, setGames] = useState<Game[]>([]); // Explicitly set the type to Game[]
     const [loading, setLoading] = useState(true);
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date()); // Default to today
+    // Initialize the default date to EST
+    const [selectedDate, setSelectedDate] = useState<Date>(() => {
+        const now = new Date(); // Local time
+        return toZonedTime(now, EST_TIMEZONE); // Convert local time to EST
+    });
 
     const repository = new BallDontLieRepository();
 
@@ -22,9 +30,10 @@ const App = () => {
         const fetchGames = async () => {
             setLoading(true);
 
-            const formattedDate = format(selectedDate, 'yyyy-MM-dd'); // Format the date as 'yyyy-MM-dd'
+            // Format the local date in EST timezone
+            const formattedDateInEST = formatInTimeZone(selectedDate, EST_TIMEZONE, 'yyyy-MM-dd');
             try {
-                const data = await repository.getGames(formattedDate, formattedDate);
+                const data = await repository.getGames(formattedDateInEST, formattedDateInEST);
                 setGames(data); // Now TypeScript knows that data matches the type Game[]
             } catch (error) {
                 console.error('Error fetching games:', error);

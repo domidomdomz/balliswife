@@ -6,9 +6,11 @@ export class BallDontLieRepository implements IRepository {
     private BASE_URL = 'http://localhost:5000/api';
 
     async getGames(startDate: string, endDate: string): Promise<Game[]> {
-        const response = await axios.get(`${this.BASE_URL}/games`, {
+        const response = await axios.get<Game[]>(`${this.BASE_URL}/games`, {
             params: { startDate, endDate },
         });
+
+        console.log('Response:', response.data);
 
         // Map API data to Game entity
         return response.data.map((gameData: any) => {
