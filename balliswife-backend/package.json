@@ -7,7 +7,7 @@
     "name": ""
   },
   "scripts": {
-    "start": "node dist/infrastructure/Server.js",
+    "start": "ts-node src/infrastructure/Server.ts",
     "build": "tsc --build",
     "clean": "tsc --build --clean"
   },
