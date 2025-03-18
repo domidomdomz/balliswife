@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import DatePicker from 'react-datepicker';
 import { format, startOfWeek, endOfWeek, eachDayOfInterval, subWeeks, addWeeks } from 'date-fns';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 interface DaysTickerProps {
     selectedDate: Date;
@@ -8,7 +11,7 @@ interface DaysTickerProps {
 
 const DaysTicker: React.FC<DaysTickerProps> = ({ selectedDate, onDateChange }) => {
     // Get the start and end of the current week (Sunday to Saturday)
-    const startOfCurrentWeek = startOfWeek(selectedDate, { weekStartsOn: 0 }); // Week starts on Sunday
+    const startOfCurrentWeek = startOfWeek(selectedDate, { weekStartsOn: 0 });
     const endOfCurrentWeek = endOfWeek(selectedDate, { weekStartsOn: 0 });
 
     // Generate all dates of the current week
@@ -16,13 +19,13 @@ const DaysTicker: React.FC<DaysTickerProps> = ({ selectedDate, onDateChange }) =
 
     // Handle the click for the previous week
     const handlePreviousWeek = () => {
-        const newDate = subWeeks(selectedDate, 1); // Subtract 1 week
+        const newDate = subWeeks(selectedDate, 1);
         onDateChange(newDate);
     };
 
     // Handle the click for the next week
     const handleNextWeek = () => {
-        const newDate = addWeeks(selectedDate, 1); // Add 1 week
+        const newDate = addWeeks(selectedDate, 1);
         onDateChange(newDate);
     };
 
@@ -31,18 +34,52 @@ const DaysTicker: React.FC<DaysTickerProps> = ({ selectedDate, onDateChange }) =
         onDateChange(day);
     };
 
-    return (
-        <div className="d-flex align-items-center">
-            {/* Previous Week Arrow */}
-            <button
-                className="btn btn-light"
-                onClick={handlePreviousWeek}
-            >
-                <i className="bi bi-arrow-left"></i> {/* Left Arrow Icon */}
-            </button>
+    // Reference to control DatePicker
+    const datePickerRef = useRef<any>(null);
 
-            {/* Days of the Current Week */}
-            <div className="d-flex justify-content-center flex-grow-1">
+    return (
+        <div className="days-ticker">
+            {/* Month and Year Row with Calendar Icon */}
+            <div className="d-flex justify-content-between align-items-center mb-2">
+                <button
+                    className="btn btn-light btn-sm d-inline-flex align-items-center"
+                    onClick={handlePreviousWeek}
+                    aria-label="Previous Week"
+                >
+                    <i className="bi bi-arrow-left"></i> {/* Left Arrow Icon */}
+                </button>
+                <div className="month-year-label text-center flex-grow-1">
+                    {format(selectedDate, 'MMMM yyyy')} {/* Month and Year */}
+                </div>
+                <div className="position-relative">
+                    <button
+                        className="btn btn-light btn-sm d-inline-flex align-items-center"
+                        onClick={() => datePickerRef.current?.setOpen(true)} // Open DatePicker
+                        aria-label="Open Calendar"
+                    >
+                        <i className="bi bi-calendar3"></i> {/* Calendar Icon */}
+                    </button>
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={(date: Date | null) => date && onDateChange(date)} // Handle Date Change
+                        dateFormat="yyyy-MM-dd"
+                        ref={datePickerRef} // Attach ref to DatePicker
+                        popperPlacement="bottom" // Align calendar
+                        popperModifiers={[]}
+                        className="invisible-date-picker" // Custom style to hide the default input
+                    />
+                </div>
+                <button
+                    className="btn btn-light btn-sm d-inline-flex align-items-center"
+                    onClick={handleNextWeek}
+                    aria-label="Next Week"
+                >
+                    <i className="bi bi-arrow-right"></i> {/* Right Arrow Icon */}
+                </button>
+            </div>
+
+            {/* Days of the Week */}
+            <div className="d-flex justify-content-center">
                 {daysOfWeek.map((day) => (
                     <div
                         key={day.toISOString()}
@@ -56,14 +93,6 @@ const DaysTicker: React.FC<DaysTickerProps> = ({ selectedDate, onDateChange }) =
                     </div>
                 ))}
             </div>
-
-            {/* Next Week Arrow */}
-            <button
-                className="btn btn-light"
-                onClick={handleNextWeek}
-            >
-                <i className="bi bi-arrow-right"></i> {/* Right Arrow Icon */}
-            </button>
         </div>
     );
 };

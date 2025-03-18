@@ -68,27 +68,39 @@
 
 /* Style the calendar button */
 .calendar-icon-btn {
-  background-color: #fff;
-  color: #007bff; /* Bootstrap primary color */
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .calendar-icon-btn:hover {
-  background-color: #f7f7f7;
-  border-color: #ccc;
+  background-color: #f0f0f0;
+}
+
+.invisible-date-picker {
+  display: none;
 }
 
 /* Use Bootstrap Icon (bi-calendar3) for the calendar icon */
 .bi-calendar3 {
   font-size: 1.5rem;
+}
+
+.days-ticker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.month-year-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
 }
 
 .day-box {
