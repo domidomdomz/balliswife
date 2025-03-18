@@ -1,8 +1,12 @@
 {
     "compilerOptions": {
-        "esModuleInterop": true,
-        "moduleResolution": "node",
+        "outDir": "dist", // Output directory for compiled files
+        "rootDir": "src", // Root directory for source files
+        "module": "commonjs",
+        "target": "es6",
         "strict": true,
-        "target": "ES6"
-    }
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    },
+    "include": [ "src" ]
 }
