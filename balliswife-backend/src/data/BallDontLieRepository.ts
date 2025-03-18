@@ -22,7 +22,7 @@ export class BallDontLieRepository implements IRepository {
                 },
             });
 
-            if (response.status === 404 || response.data.data.length === 0) {
+            if (response.status === 404 || response.data === null) {
                 console.warn('No games found for the specified date range.');
                 return { data: [], message: 'No games found.' };
             }
