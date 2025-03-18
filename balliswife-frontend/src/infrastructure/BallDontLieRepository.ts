@@ -3,7 +3,14 @@ import { IRepository } from '../core/usecases/IRepository';
 import { Game } from '../core/entities/Game';
 
 export class BallDontLieRepository implements IRepository {
-    private BASE_URL = 'http://localhost:5000/api';
+    private BASE_URL: string;
+
+    constructor() {
+        // Use localhost for local development, and the deployed URL in production
+        this.BASE_URL = process.env.NODE_ENV === 'production' 
+            ? 'https://balliswife.onrender.com/api' 
+            : 'http://localhost:5000/api';
+    }
 
     async getGames(startDate: string, endDate: string): Promise<Game[]> {
         const response = await axios.get<Game[]>(`${this.BASE_URL}/games`, {
