@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-        "outDir": "dist", // Output directory for compiled files
-        "rootDir": "src", // Root directory for source files
+        "outDir": "dist", // Ensures compiled files go to 'dist'
+        "rootDir": "src", // Source files directory
         "module": "commonjs",
         "target": "es6",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true
     },
-    "include": [ "src" ]
+    "include": [ "src" ], // Include the 'src' folder
+    "exclude": [ "node_modules" ]
 }
