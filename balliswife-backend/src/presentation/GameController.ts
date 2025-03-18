@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { GetAllGames } from '../usecases/GetAllGames';
-import { BallDontLieRepository } from '../data/BallDontLieRepository';
+import { BallDontLieRepository } from '../data/repositories/BallDontLieRepository';
 import { mapGameData } from '../core/utils/GameMapper';
 import { sortGames } from '../core/utils/GameSorter';
 

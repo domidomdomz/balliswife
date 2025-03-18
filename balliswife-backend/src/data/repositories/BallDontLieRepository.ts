@@ -1,19 +1,11 @@
 import axios from 'axios';
 import NodeCache from 'node-cache';
-import { IRepository } from '../core/interfaces/IRepository';
-import { Game } from '../core/entities/Game';
+import { IRepository } from '../../core/interfaces/IRepository';
+import { Game } from '../../core/entities/Game';
+import { BallDontLieGameResponse } from '../dto/BallDontLieGameResponse';
 
 const BASE_URL = 'https://api.balldontlie.io/v1';
 const cache = new NodeCache({ stdTTL: 600 }); // Cache valid for 10 minutes
-
-export interface BallDontLieGameResponse {
-    data: Game[];
-    meta: {
-        total_pages: number;
-        current_page: number;
-        [key: string]: any; // Add this for other optional meta fields
-    };
-}
 
 export class BallDontLieRepository implements IRepository {
     async getAllGames(params: { startDate?: string; endDate?: string; page?: number } = {}): Promise<any> {

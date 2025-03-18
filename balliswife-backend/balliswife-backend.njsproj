@@ -44,6 +44,8 @@
     <Folder Include="src\core\interfaces\" />
     <Folder Include="src\core\utils\" />
     <Folder Include="src\data\" />
+    <Folder Include="src\data\dto\" />
+    <Folder Include="src\data\repositories\" />
     <Folder Include="src\infrastructure\" />
     <Folder Include="src\presentation\" />
     <Folder Include="src\usecases\" />
@@ -55,7 +57,10 @@
     <TypeScriptCompile Include="src\core\utils\GameSorter.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\data\BallDontLieRepository.ts">
+    <TypeScriptCompile Include="src\data\dto\BallDontLieGameResponse.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\data\repositories\BallDontLieRepository.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\core\entities\Game.ts">
