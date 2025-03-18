@@ -7,8 +7,8 @@
     "name": ""
   },
   "scripts": {
-    "start": "ts-node src/infrastructure/Server.ts",
-    "build": "tsc --build",
+    "build": "tsc",
+    "start": "node dist/infrastructure/Server.js",
     "clean": "tsc --build --clean"
   },
   "devDependencies": {

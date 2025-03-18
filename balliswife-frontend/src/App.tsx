@@ -20,6 +20,7 @@ const App = () => {
     const repository = new BallDontLieRepository();
 
     useEffect(() => {
+        document.title = 'Ball is Wife';
         const fetchGames = async () => {
             setLoading(true);
             const formattedDateInEST = formatInTimeZone(selectedDate, EST_TIMEZONE, 'yyyy-MM-dd');
