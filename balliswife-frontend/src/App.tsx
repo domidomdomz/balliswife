@@ -12,10 +12,7 @@ const EST_TIMEZONE = 'America/New_York';
 const App = () => {
     const [games, setGames] = useState<Game[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedDate, setSelectedDate] = useState<Date>(() => {
-        const now = new Date();
-        return toZonedTime(now, EST_TIMEZONE);
-    });
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
     const repository = new BallDontLieRepository();
 
