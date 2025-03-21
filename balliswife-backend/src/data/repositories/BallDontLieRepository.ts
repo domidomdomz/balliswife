@@ -7,11 +7,12 @@ import { toZonedTime } from 'date-fns-tz';
 
 const BASE_URL = 'https://api.balldontlie.io/v1';
 const cache = new NodeCache({ stdTTL: 600 }); // Cache valid for 10 minutes
-const PACIFIC_TIMEZONE = 'America/Los_Angeles'; // Updated to Pacific Time Zone
+const PACIFIC_TIMEZONE = 'America/Los_Angeles'; // Use Pacific Time Zone
 
 export class BallDontLieRepository implements IRepository {
     async getAllGames(params: { startDate?: string; endDate?: string; page?: number } = {}): Promise<any> {
         const cacheKey = `games-${params.startDate}-${params.endDate}`; // Unique cache key
+        const today = toZonedTime(new Date(), PACIFIC_TIMEZONE).toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
 
         // Check if cached games exist (only cacheable games)
         const cachedGames = cache.get<Game[]>(cacheKey);
@@ -42,8 +43,12 @@ export class BallDontLieRepository implements IRepository {
                 const games: Game[] = response.data.data;
 
                 // Separate cacheable and ongoing games
-                cacheableGames = games.filter(game => game.status === "Final" || game.period === 0);
-                cache.set(cacheKey, cacheableGames); // Cache only cacheable games
+                cacheableGames = games.filter(game => {
+                    const gameDate = game.date.split('T')[0]; // Extract date in 'YYYY-MM-DD' format
+                    return gameDate !== today && (game.status === "Final" || game.period === 0); // Only cache games not played today
+                });
+
+                cache.set(cacheKey, cacheableGames); // Cache only eligible games
             } catch (error) {
                 console.error('Error fetching games:', error);
                 throw error;
@@ -94,6 +99,7 @@ export class BallDontLieRepository implements IRepository {
             return [];
         }
     }
+
     //async getGamesByDate(date: string): Promise<any> {
     //    const response = await axios.get(`${BASE_URL}/games`, { params: { dates: [date] } });
     //    return response.data;
