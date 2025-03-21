@@ -7,7 +7,8 @@ import { toZonedTime } from 'date-fns-tz';
 
 const BASE_URL = 'https://api.balldontlie.io/v1';
 const cache = new NodeCache({ stdTTL: 600 }); // Cache valid for 10 minutes
-const EST_TIMEZONE = 'America/New_York';
+const PACIFIC_TIMEZONE = 'America/Los_Angeles'; // Updated to Pacific Time Zone
+
 export class BallDontLieRepository implements IRepository {
     async getAllGames(params: { startDate?: string; endDate?: string; page?: number } = {}): Promise<any> {
         const cacheKey = `games-${params.startDate}-${params.endDate}`; // Unique cache key
@@ -63,7 +64,7 @@ export class BallDontLieRepository implements IRepository {
      * Refresh ongoing games (those not cached).
      */
     private async refreshOngoingGames(params: { startDate?: string; endDate?: string }): Promise<Game[]> {
-        const today = toZonedTime(new Date(), EST_TIMEZONE).toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
+        const today = toZonedTime(new Date(), PACIFIC_TIMEZONE).toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
 
         // Skip API call if the date is not today
         if (params.startDate !== today && params.endDate !== today) {
@@ -93,8 +94,6 @@ export class BallDontLieRepository implements IRepository {
             return [];
         }
     }
-
-
     //async getGamesByDate(date: string): Promise<any> {
     //    const response = await axios.get(`${BASE_URL}/games`, { params: { dates: [date] } });
     //    return response.data;
