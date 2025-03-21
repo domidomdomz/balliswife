@@ -42,11 +42,8 @@ export class BallDontLieRepository implements IRepository {
 
                 const games: Game[] = response.data.data;
 
-                // Separate cacheable and ongoing games
-                cacheableGames = games.filter(game => {
-                    const gameDate = game.date.split('T')[0]; // Extract date in 'YYYY-MM-DD' format
-                    return gameDate !== today && (game.status === "Final" || game.period === 0); // Only cache games not played today
-                });
+                // Include all final games in cacheableGames, even if played today
+                cacheableGames = games.filter(game => game.status === "Final" || (game.date.split('T')[0] !== today && game.period === 0));
 
                 cache.set(cacheKey, cacheableGames); // Cache only eligible games
             } catch (error) {
@@ -90,7 +87,7 @@ export class BallDontLieRepository implements IRepository {
             });
 
             const games: Game[] = response.data.data;
-            const ongoingGames = games.filter(game => game.period > 0 && game.status !== "Final");
+            const ongoingGames = games.filter(game => game.period > 0 && game.status !== "Final"); // Ongoing games only
 
             console.log('Refreshed ongoing games:', ongoingGames);
             return ongoingGames;
