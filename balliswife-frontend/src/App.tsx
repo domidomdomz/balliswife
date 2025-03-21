@@ -7,7 +7,7 @@ import DaysTicker from './components/DaysTicker';
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const EST_TIMEZONE = 'America/New_York';
+const EST_TIMEZONE = 'America/Los_Angeles';
 
 const App = () => {
     const [games, setGames] = useState<Game[]>([]);
