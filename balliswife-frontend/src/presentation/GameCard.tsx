@@ -10,8 +10,8 @@ const GameCard = ({ game }: { game: any }) => {
 
     // Determine overtime label
     const getOvertimeLabel = (period: number): string => {
-        if (period === 5) return "OT"; // Only display "OT" for one overtime
-        if (period > 5) return `OT${period - 4}`; // OT2, OT3, etc., for additional overtimes
+        if (period === 5) return " / OT"; // Only display "OT" for one overtime
+        if (period > 5) return ` / OT${period - 4}`; // OT2, OT3, etc., for additional overtimes
         return ""; // Not in overtime
     };
 
@@ -49,20 +49,22 @@ const GameCard = ({ game }: { game: any }) => {
                     <p className="fw-bold">{game.visitorTeam.fullName}</p>
                     {isFinal ? (
                         <p className={`fs-4 ${visitorScoreClass}`}>{game.visitorTeamScore}</p>
-                    ) : (
+                    ) : !isNotStarted ? (
                         <p className="fs-4 fw-bold text-primary">{game.visitorTeamScore}</p>
+                    ) : (
+                        <p className="fs-4 fw-bold text-primary"></p>
                     )}
                 </div>
 
                 {/* Game Details */}
                 <div className="game-details text-center my-3 my-md-0">
                     {isNotStarted ? (
-                        <p className="text-muted">{startTimeLocal}</p>
+                        <p className="fw-bold">{startTimeLocal}</p>
                     ) : isFinal ? (
-                        <p className="text-muted">{game.status} {getOvertimeLabel(game.period)}</p>
+                        <p className="fw-bold">{game.status} {getOvertimeLabel(game.period)}</p>
                     ) : (
-                        <p className="text-muted">
-                            {game.period >= 5 ? getOvertimeLabel(game.period) : `Quarter: ${game.period}`} | Time Remaining: {game.time || 'N/A'}
+                        <p className="fw-bold">
+                            {game.period >= 5 ? getOvertimeLabel(game.period) : game.time || 'N/A'}
                         </p>
                     )}
                 </div>
@@ -78,8 +80,10 @@ const GameCard = ({ game }: { game: any }) => {
                     <p className="fw-bold">{game.homeTeam.fullName}</p>
                     {isFinal ? (
                         <p className={`fs-4 ${homeScoreClass}`}>{game.homeTeamScore}</p>
-                    ) : (
+                    ) : !isNotStarted ? (
                         <p className="fs-4 fw-bold text-primary">{game.homeTeamScore}</p>
+                    ) : (
+                        <p className="fs-4 fw-bold text-primary"></p>
                     )}
                 </div>
             </div>
