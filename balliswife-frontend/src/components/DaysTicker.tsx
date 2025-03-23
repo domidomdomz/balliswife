@@ -19,14 +19,16 @@ const DaysTicker: React.FC<DaysTickerProps> = ({ selectedDate, onDateChange }) =
 
     // Handle the click for the previous week
     const handlePreviousWeek = () => {
-        const newDate = subWeeks(selectedDate, 1);
-        onDateChange(newDate);
+        const previousWeek = subWeeks(selectedDate, 1); // Go back 1 week
+        const previousSunday = startOfWeek(previousWeek, { weekStartsOn: 0 }); // Move to the Sunday of that week
+        onDateChange(previousSunday); // Update the selected date to the Sunday
     };
 
     // Handle the click for the next week
     const handleNextWeek = () => {
-        const newDate = addWeeks(selectedDate, 1);
-        onDateChange(newDate);
+        const nextWeek = addWeeks(selectedDate, 1); // Go forward 1 week
+        const nextSunday = startOfWeek(nextWeek, { weekStartsOn: 0 }); // Move to the Sunday of that week
+        onDateChange(nextSunday); // Update the selected date to the Sunday
     };
 
     // Handle individual day click
