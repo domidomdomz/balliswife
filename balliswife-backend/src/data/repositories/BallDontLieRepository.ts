@@ -43,7 +43,7 @@ export class BallDontLieRepository implements IRepository {
                 const games: Game[] = response.data.data;
 
                 // Include all final games in cacheableGames, even if played today
-                cacheableGames = games.filter(game => game.status === "Final" || (game.date.split('T')[0] !== today && game.period === 0));
+                cacheableGames = games.filter(game => game.status === "Final" || game.period === 0);
 
                 cache.set(cacheKey, cacheableGames); // Cache only eligible games
             } catch (error) {
